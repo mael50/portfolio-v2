@@ -79,6 +79,7 @@ TODO :
 - [ ] Page projets
 - [ ] Page Blog
 - [ ] Finir page contact
+- [ ] Page 404
 - [ ] Ajouter animations
 - [ ] Tester et vérifier si bugs
 - [ ] Vérifier responsive
