@@ -1,6 +1,6 @@
 <template>
     <div>
-        <UHeader class="border-b bg-white dark:bg-gray-900 transition-colors duration-300" height="20">
+        <UHeader class="border-b bg-white dark:bg-gray-950 transition-colors duration-300" height="20">
             <div class="w-full max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
                 <!-- Logo -->
                 <NuxtLink to="/"
@@ -12,7 +12,7 @@
                 <nav class="hidden md:flex items-center justify-center flex-1 px-8">
                     <div class="flex items-center space-x-8">
                         <NuxtLink v-for="item in mainNavItems" :key="item.href" :to="item.href"
-                            class="relative font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 py-2 transition-colors duration-300 group">
+                            :class="{ 'relative font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 py-2 transition-colors duration-300 group': true, 'text-primary-600 dark:text-primary-400': item.href === currentPath }">
                             {{ item.label }}
                             <span
                                 class="absolute bottom-0 left-0 w-full h-0.5 bg-primary-600 dark:bg-primary-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" />
@@ -23,7 +23,7 @@
                 <!-- Actions -->
                 <div class="hidden md:flex items-center space-x-4">
                     <ThemeToggle />
-                    <UButton to="#contact" color="primary" variant="soft"
+                    <UButton to="/contact" color="primary" variant="soft"
                         class="font-medium px-6 hover:scale-105 transition-transform duration-200">
                         Contact
                     </UButton>
@@ -46,7 +46,7 @@
             leave-from-class="transform translate-y-0 opacity-100"
             leave-to-class="transform -translate-y-full opacity-0">
             <div v-if="isMenuOpen"
-                class="fixed inset-x-0 top-0 bg-white dark:bg-gray-900 z-50 md:hidden shadow-lg transition-colors duration-300">
+                class="fixed inset-x-0 top-0 bg-white dark:bg-gray-950 z-50 md:hidden shadow-lg transition-colors duration-300">
                 <div class="px-4 py-4">
                     <div class="flex items-center justify-between mb-6">
                         <NuxtLink to="/"
@@ -61,7 +61,7 @@
 
                     <nav class="flex flex-col items-center space-y-6 py-4">
                         <NuxtLink v-for="item in [...mainNavItems, contactItem]" :key="item.href" :to="item.href"
-                            class="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+                            :class="{ 'text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors': true, 'text-primary-600 dark:text-primary-400': item.href === currentPath }"
                             @click="isMenuOpen = false">
                             {{ item.label }}
                         </NuxtLink>
@@ -73,25 +73,14 @@
 </template>
 
 <script setup>
+import { ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
+
 const isMenuOpen = ref(false)
+const route = useRoute()
+const currentPath = ref(route.path)
 
-const mainNavItems = [
-    {
-        label: 'À propos',
-        href: '#about'
-    },
-    {
-        label: 'Réalisations',
-        href: '#projects'
-    },
-    {
-        label: 'Blog',
-        href: '#blog'
-    }
-]
-
-const contactItem = {
-    label: 'Contact',
-    href: '#contact'
-}
+watch(route, (newRoute) => {
+    currentPath.value = newRoute.path
+})
 </script>

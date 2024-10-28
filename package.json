@@ -11,8 +11,12 @@
   },
   "dependencies": {
     "@nuxt/ui": "^2.18.7",
+    "@nuxtjs/leaflet": "^1.2.3",
     "nuxt": "^3.13.0",
     "nuxt-aos": "^1.2.5",
+    "nuxt-mail": "^5.1.1",
+    "nuxt-marquee": "^1.0.4",
+    "nuxt-swiper": "^1.2.2",
     "vue": "latest",
     "vue-router": "latest"
   }
