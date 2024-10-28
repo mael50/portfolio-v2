@@ -20,10 +20,67 @@ export default defineNuxtConfig({
         },
       },
     }],
+    // Les modules que j'ai add
+    '@nuxtjs/html-validator',
+    'nuxt-delay-hydration',
+    '@nuxtjs/seo',
   ],
   colorMode: {
     preference: 'system',
     fallback: 'dark',
     classSuffix: '',
   },
+
+
+  // Louis
+
+  future: {
+    compatibilityVersion: 4,
+  },
+
+  routeRules: {
+    '/': { static: true },
+    '/**': { prerender: true, }
+  },
+
+  experimental:{
+    headNext: true,
+    viewTransition: true,
+    typedPages: true,
+    payloadExtraction: true,
+  },
+
+  $production: {
+    experimental: {
+      noVueServer: true,
+    },
+  },
+
+  nitro: {
+    prerender: {
+      crawlLinks: true,
+    },
+    storage: {
+      cache: {
+        driver: 'redis',
+      }
+    },
+    minify: true,
+    compressPublicAssets: {
+      gzip: true,
+    },
+  },
+
+  delayHydration: {
+    mode: 'mount'
+  },
+
+  // nuxtSEO
+  site: {
+    url: '',
+    name: 'Mael Laroque',
+    description: "Mael Laroque, passionate senior web developer",
+    defaultLocale: 'fr',
+  },
+
 })
