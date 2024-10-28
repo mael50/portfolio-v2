@@ -73,3 +73,15 @@ bun run preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+
+TODO : 
+- [ ] Page projets
+- [ ] Page Blog
+- [ ] Finir page contact
+- [ ] Page 404
+- [ ] Ajouter animations
+- [ ] Tester et vérifier si bugs
+- [ ] Vérifier responsive
+- [ ] Upload sur le serveur
+- [ ] Mettre en place CI/CD
