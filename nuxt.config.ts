@@ -38,9 +38,14 @@ export default defineNuxtConfig({
     compatibilityVersion: 4,
   },
 
+  imports: {
+    // Auto-import pour les constants
+    dirs: ['constants']
+  },
+
   routeRules: {
-    '/': { static: true },
-    '/**': { prerender: true, }
+    '/**': { prerender: true, },
+    '/blog/**': { /** mode de render que tu veux si c'est dynamique */ },
   },
 
   experimental:{
@@ -58,7 +63,8 @@ export default defineNuxtConfig({
 
   nitro: {
     prerender: {
-      crawlLinks: true,
+      // là j'ai mis en dur les routes mais tu pourras mettre crawlLinks: true, quand t'auras plus de 404 dans tes liens
+      routes: ['/', '/a-propos', '/skills', '/contact', '/mentions-legales'],
     },
     storage: {
       cache: {
