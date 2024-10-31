@@ -2,38 +2,33 @@
     <div
         class="min-h-screen py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
         <div class="max-w-7xl mx-auto">
-            <!-- En-tête -->
             <SectionTitle icon="heroicons:envelope" title="Contact"
                 subtitle="N'hésitez pas à me contacter pour toute demande" />
 
-            <!-- Conteneur principal -->
             <div class="mt-12 grid lg:grid-cols-3 gap-8">
-                <!-- Colonne de gauche - Informations -->
                 <div class="lg:col-span-1 space-y-6">
-                    <!-- Carte avec localisation -->
                     <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-4 space-y-4">
                         <div class="relative h-48 rounded-lg overflow-hidden">
-                            <LMap class="w-full h-full" :center="{ lat: 49.182863, lng: -0.370679 }" :zoom="14"
-                                :options="{ zoomControl: false }">
-                                <LTileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-                                <LMarker :lat-lng="{ lat: 49.182863, lng: -0.370679 }" />
-                            </LMap>
+                            <MapboxMap map-id="contact-map" class="absolute inset-0 w-full h-full rounded-lg"
+                                style="position: absolute; top: 0; bottom: 0; width: 100%;" :options="{
+                                    style: 'mapbox://styles/mapbox/streets-v12',
+                                    center: [-0.370679, 49.182863],
+                                    zoom: 10
+                                }" />
                         </div>
                         <p class="text-center text-gray-600 dark:text-gray-300 font-medium">
                             14000 Caen
                         </p>
                     </div>
 
-                    <!-- Informations de contact -->
                     <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 space-y-6">
-                        <!-- Email -->
                         <div class="flex items-center space-x-4">
                             <div class="flex-shrink-0">
                                 <UIcon name="heroicons:envelope" class="w-6 h-6 text-primary-500" />
                             </div>
-                            <a href="mailto:votre@email.com"
-                                class="text-gray-600 dark:text-gray-300 hover:text-primary-500">
-                                votre@email.com
+                            <a href="mailto:contact@maellaroque.fr"
+                                class=" text-gray-600 dark:text-gray-300 hover:text-primary-500">
+                                contact@maellaroque.fr
                             </a>
                         </div>
 
@@ -42,12 +37,11 @@
                             <div class="flex-shrink-0">
                                 <UIcon name="heroicons:phone" class="w-6 h-6 text-primary-500" />
                             </div>
-                            <a href="tel:+33600000000" class="text-gray-600 dark:text-gray-300 hover:text-primary-500">
-                                +33 6 00 00 00 00
+                            <a href="tel:+33769711762" class="text-gray-600 dark:text-gray-300 hover:text-primary-500">
+                                +33 7 69 71 17 62
                             </a>
                         </div>
 
-                        <!-- Réseaux sociaux -->
                         <div class="pt-4 border-t border-gray-200 dark:border-gray-700">
                             <div class="flex justify-center gap-6">
                                 <a href="https://github.com/votre-username" target="_blank" rel="noopener noreferrer"
@@ -80,16 +74,16 @@
                 </div>
 
                 <!-- Colonne de droite - Formulaire -->
-                <div class="lg:col-span-2">
+                <div class="lg:col-span-2 h-full">
                     <form @submit.prevent="sendEmail"
-                        class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 space-y-6">
+                        class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 space-y-6 h-full my-auto">
                         <!-- Email -->
-                        <div class="space-y-2">
+                        <div class="space-y-2 form-group">
                             <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
                                 Adresse email
                             </label>
                             <input id="email" v-model="form.email" type="email" required
-                                class="block w-full rounded-lg border-gray-300 dark:border-gray-600 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-700 dark:text-white sm:text-sm"
+                                class="block w-full rounded-lg border-gray-300 dark:border-gray-600 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-700 dark:text-white sm:text-sm form-input"
                                 :disabled="loading" />
                         </div>
 
@@ -99,7 +93,7 @@
                                 Objet
                             </label>
                             <input id="subject" v-model="form.subject" type="text" required
-                                class="block w-full rounded-lg border-gray-300 dark:border-gray-600 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-700 dark:text-white sm:text-sm"
+                                class="block w-full rounded-lg border-gray-300 dark:border-gray-600 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-700 dark:text-white sm:text-sm form-input"
                                 :disabled="loading" />
                         </div>
 
@@ -109,7 +103,7 @@
                                 Message
                             </label>
                             <textarea id="message" v-model="form.message" rows="6" required
-                                class="block w-full rounded-lg border-gray-300 dark:border-gray-600 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-700 dark:text-white sm:text-sm"
+                                class="block w-full rounded-lg border-gray-300 dark:border-gray-600 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-700 dark:text-white sm:text-sm form-textarea"
                                 :disabled="loading"></textarea>
                         </div>
 
@@ -149,7 +143,6 @@ async function sendEmail() {
             text: form.message,
         })
 
-        // Réinitialiser le formulaire
         form.email = ''
         form.subject = ''
         form.message = ''

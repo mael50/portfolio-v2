@@ -2,37 +2,29 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
-  modules: [
-    '@nuxt/ui',
-    'nuxt-aos',
-    'nuxt-swiper',
-    'nuxt-marquee',
-    ['nuxt-mail', {
-      message: {
-        to: 'contact@maellaroque.fr',
+  modules: ['@nuxt/ui', 'nuxt-aos', 'nuxt-swiper', // Les modules que j'ai add
+  'nuxt-marquee', ['nuxt-mail', {
+    message: {
+      to: 'contact@maellaroque.fr',
+    },
+    smtp: {
+      host: 'smtp-relay.brevo.com',
+      port: 587,
+      auth: {
+        user: 'maellaroque50@gmail.com',
+        pass: 's6IVF0tQnx2g7OcT',
       },
-      smtp: {
-        host: 'smtp-relay.brevo.com',
-        port: 587,
-        auth: {
-          user: 'maellaroque50@gmail.com',
-          pass: 's6IVF0tQnx2g7OcT',
-        },
-      },
-    }],
-    // Les modules que j'ai add
-    '@nuxtjs/html-validator',
-    'nuxt-delay-hydration',
-    '@nuxtjs/seo',
-  ],
+    },
+  }], '@nuxtjs/html-validator', 'nuxt-delay-hydration', '@nuxtjs/seo', 'nuxt-mapbox', '@nuxt/content'],
   colorMode: {
     preference: 'system',
     fallback: 'dark',
     classSuffix: '',
   },
 
-
-  // Louis
+  mapbox: {
+    accessToken: 'pk.eyJ1IjoiemFraW1ib3ciLCJhIjoiY2xwbWlqMm4xMDl4YjJ2cWdteTZqNjhjdSJ9.j6OjehNu0JXpXJAsqrK-5g',
+  },
 
   future: {
     compatibilityVersion: 4,
@@ -63,8 +55,7 @@ export default defineNuxtConfig({
 
   nitro: {
     prerender: {
-      // là j'ai mis en dur les routes mais tu pourras mettre crawlLinks: true, quand t'auras plus de 404 dans tes liens
-      routes: ['/', '/a-propos', '/skills', '/contact', '/mentions-legales'],
+      routes: ['/', '/a-propos', '/skills', '/contact', '/mentions-legales', '/projects'],
     },
     storage: {
       cache: {
@@ -87,6 +78,15 @@ export default defineNuxtConfig({
     name: 'Mael Laroque',
     description: "Mael Laroque, passionate senior web developer",
     defaultLocale: 'fr',
+  },
+
+  content: {
+    navigation: {
+      fields: ['title', 'description', 'image']
+    },
+    highlight: {
+      theme: 'github-dark'
+    }
   },
 
 })
