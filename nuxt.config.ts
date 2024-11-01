@@ -75,10 +75,10 @@ export default defineNuxtConfig({
 
   // nuxtSEO
   site: {
-    url: '',
-    name: 'Mael Laroque',
-    description: "Mael Laroque, passionate senior web developer",
-    defaultLocale: 'fr',
+      url: 'https://maellaroque.fr',
+      name: 'Mael Laroque',
+      description: "Mael Laroque, développeur web full-stack passionné, spécialisé dans la création d'applications web modernes et performantes. Découvrez mes projets, compétences et articles de blog sur le développement web.",
+      defaultLocale: 'fr',
   },
 
   content: {
