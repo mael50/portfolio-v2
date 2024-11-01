@@ -7,19 +7,14 @@ export const mainNavItems = [
         label: 'Compétences',
         href: '/skills'
     },
-    /**
-     * Pour pouvoir build avec prerender faut éviter les 404
-     * {
-     *         label: 'Blog',
-     *         href: '/blog'
-     *     }
-     *
-     *     {
-     *         label: 'Réalisations',
-     *         href: '/projects'
-     *     },
-     *
-     * */
+    {
+        label: 'Réalisations',
+        href: '/projects'
+    },
+    {
+        label: 'Blog',
+        href: '/blog'
+    },
 ]
 
 export const contactItem = {

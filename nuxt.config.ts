@@ -2,17 +2,17 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
-  modules: ['@nuxt/ui', 'nuxt-aos', 'nuxt-swiper', // Les modules que j'ai add
+  modules: ['@nuxt/ui', 'nuxt-aos', 'nuxt-swiper',
   'nuxt-marquee', ['nuxt-mail', {
     message: {
       to: 'contact@maellaroque.fr',
     },
     smtp: {
-      host: 'smtp-relay.brevo.com',
-      port: 587,
+      host: process.env.NUXT_SMTP_HOST,
+      port: parseInt(process.env.NUXT_SMTP_PORT || '587', 10),
       auth: {
-        user: 'maellaroque50@gmail.com',
-        pass: 's6IVF0tQnx2g7OcT',
+        user: process.env.NUXT_SMTP_USER,
+        pass: process.env.NUXT_SMTP_PASS,
       },
     },
   }], '@nuxtjs/html-validator', 'nuxt-delay-hydration', '@nuxtjs/seo', 'nuxt-mapbox', '@nuxt/content'],
@@ -23,7 +23,7 @@ export default defineNuxtConfig({
   },
 
   mapbox: {
-    accessToken: 'pk.eyJ1IjoiemFraW1ib3ciLCJhIjoiY2xwbWlqMm4xMDl4YjJ2cWdteTZqNjhjdSJ9.j6OjehNu0JXpXJAsqrK-5g',
+    accessToken: process.env.NUXT_MAPBOX_TOKEN,
   },
 
   future: {
@@ -36,11 +36,12 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-    '/**': { prerender: true, },
-    '/blog/**': { /** mode de render que tu veux si c'est dynamique */ },
+    '/**': { prerender: true },
+    '/projects/**': { ssr: true },
+    '/blog/**': { ssr: true }
   },
 
-  experimental:{
+  experimental: {
     headNext: true,
     viewTransition: true,
     typedPages: true,
@@ -55,7 +56,7 @@ export default defineNuxtConfig({
 
   nitro: {
     prerender: {
-      routes: ['/', '/a-propos', '/skills', '/contact', '/mentions-legales', '/projects'],
+      routes: ['/', '/a-propos', '/skills', '/contact', '/mentions-legales', '/projects', '/blog'],
     },
     storage: {
       cache: {
