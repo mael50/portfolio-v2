@@ -2,8 +2,7 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
-  modules: ['@nuxt/ui', 'nuxt-aos', 'nuxt-swiper',
-  'nuxt-marquee', ['nuxt-mail', {
+  modules: ['@nuxt/ui', 'nuxt-aos', 'nuxt-swiper', 'nuxt-marquee', ['nuxt-mail', {
     message: {
       to: 'contact@maellaroque.fr',
     },
@@ -15,11 +14,15 @@ export default defineNuxtConfig({
         pass: process.env.NUXT_SMTP_PASS,
       },
     },
-  }], '@nuxtjs/html-validator', 'nuxt-delay-hydration', '@nuxtjs/seo', 'nuxt-mapbox', '@nuxt/content'],
+  }], '@nuxtjs/html-validator', 'nuxt-delay-hydration', '@nuxtjs/seo', 'nuxt-mapbox', '@nuxt/content', 'nuxt-gtag'],
   colorMode: {
     preference: 'system',
     fallback: 'dark',
     classSuffix: '',
+  },
+
+  gtag: {
+    id: process.env.NUXT_GTAG_ID,
   },
 
   mapbox: {

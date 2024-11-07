@@ -14,5 +14,7 @@
 </template>
 
 <script setup>
-
+definePageMeta({
+    title: 'Développeur Full-Stack',
+})
 </script>
