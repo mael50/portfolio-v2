@@ -40,31 +40,21 @@ export default defineNuxtConfig({
 
   routeRules: {
     '/**': { prerender: true },
-    '/projects/**': { ssr: true },
-    '/blog/**': { ssr: true }
+    '/projects/**': { static: true },
+    '/blog/**': { static: true },
   },
 
   experimental: {
-    headNext: true,
+    //headNext: true,
     viewTransition: true,
     typedPages: true,
-    payloadExtraction: true,
-  },
-
-  $production: {
-    experimental: {
-      noVueServer: true,
-    },
+    //payloadExtraction: true,
   },
 
   nitro: {
     prerender: {
-      routes: ['/', '/a-propos', '/skills', '/contact', '/mentions-legales', '/projects', '/blog'],
-    },
-    storage: {
-      cache: {
-        driver: 'redis',
-      }
+      crawlLinks: true,
+      failOnError: false,
     },
     minify: true,
     compressPublicAssets: {
