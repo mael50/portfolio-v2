@@ -2,7 +2,7 @@
 title: Site vitrine Motin
 description: Site moderne et responsive conçu avec React et Strapi, mettant en avant les services de Motin SAS, concessionnaire agricole.
 image: /images/projects/motin/motin-cover.png
-date: 2024-10
+date: 2024-03
 tags: 
   - React
   - Strapi
