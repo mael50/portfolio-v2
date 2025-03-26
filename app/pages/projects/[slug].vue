@@ -94,9 +94,16 @@
 const route = useRoute()
 
 // Récupération du projet courant
-const { data: project } = await useAsyncData('project', () =>
-    queryContent('projects').where({ _path: `/projects/${route.params.slug}` }).findOne()
+const { params } = route
+const { data: project, refresh } = await useAsyncData(`project-${params.slug}`, () =>
+    queryContent('projects').where({ _path: `/projects/${params.slug}` }).findOne()
 )
+
+watch(params, (newParams) => {
+  if (newParams.slug !== params.slug) {
+    refresh()
+  }
+})
 
 // Récupération de tous les projets pour la navigation
 const { data: allProjects } = await useAsyncData('allProjects', () =>
