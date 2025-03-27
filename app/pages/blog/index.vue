@@ -42,10 +42,13 @@
                                     <span class="text-sm text-gray-500 dark:text-gray-400 font-medium">
                                         {{ formatDate(article.date) }}
                                     </span>
-                                    <span v-if="article.readTime"
-                                        class="text-xs px-3 py-1.5 bg-gray-100 dark:bg-gray-700 rounded-full font-semibold text-gray-600 dark:text-gray-300">
-                                        {{ article.readTime }} min de lecture
-                                    </span>
+                                    <div class="flex items-center space-x-2">
+                                        <ViewCounter :slug="article._path.split('/').pop()" :auto-increment="false" />
+                                        <span v-if="article.readTime"
+                                            class="text-xs px-3 py-1.5 bg-gray-100 dark:bg-gray-700 rounded-full font-semibold text-gray-600 dark:text-gray-300">
+                                            {{ article.readTime }} min de lecture
+                                        </span>
+                                    </div>
                                 </div>
 
                                 <h2

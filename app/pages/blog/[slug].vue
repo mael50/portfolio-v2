@@ -12,6 +12,7 @@
                 <span class="text-sm px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded-full">
                     {{ article.readTime }} min de lecture
                 </span>
+                <ViewCounter :slug="article._path.split('/').pop()" :auto-increment="true" />
             </div>
 
             <!-- Tags -->
